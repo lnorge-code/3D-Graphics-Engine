@@ -6,15 +6,13 @@ This code is an attempt at making a highly simplified graphics engine with the h
 The code contains all of the relevant functionality for:
     -points, triangles, and other shapes formed by combining said triangles
     -transforming points belonging to any shape in accordance with the viewing
-fustrum as described in the YouTube video (https://www.youtube.com/watch?v=U0_ONQQ5ZNM)
-and the "explanation" text document
+fustrum as described in the YouTube videos https://www.youtube.com/watch?v=U0_ONQQ5ZNM (Brendan Galea) and https://www.youtube.com/watch?v=nvWDgBGcAIM (GraverDev)
     -rasterizing the newly transformed triangles by drawing bounding boxes around each
 triangle and using math for the intersections of planes and vectors
-    -a input/output loop allowing for the user to define their own shapes, transform, or
+    -an input/output loop allowing for the user to define their own shapes, transform, or
 delete them, after which the window will be re-drawn
 
 A more detailed explanation of how to interact with the code is available in the file "README.txt"
-A more in-depth explanation of how the code works is available in "explanation.txt"
 """
 # importing graphics to be able to draw to a window, and math for some of it's built in functions
 import graphics
@@ -76,7 +74,7 @@ class point:
         tempZ += self.translation[2]
 
         # finally the frustum can be applied and saved to new variables
-        # the original math used to find these transformations can be found in the video https://www.youtube.com/watch?v=U0_ONQQ5ZNM. The math in the video was intended for the Vulkan game engine, so involves the use of matrices. I have adapted my code to perform these calculations without matrices (more in explanation.txt).
+        # the original math used to find these transformations can be found in the videos https://www.youtube.com/watch?v=U0_ONQQ5ZNM (Brendan Galea) and https://www.youtube.com/watch?v=nvWDgBGcAIM (GraverDev). The math in the video was intended for the Vulkan game engine, so involves the use of matrices. I have adapted my code to perform these calculations without matrices (more in explanation.txt).
         self.transformedX = tempX * (0.5 * frustumHeight / math.tan(0.5 * fov)) / abs(tempZ + 0.5 * frustumHeight / math.tan(0.5 * fov)) # NOTE: abs is in the denominator because if the point is far enough behind the window, it will have x and y values inverted from what they should be. We use abs here to make the denominator always be positive, which means they are always only scaled down, not inverted
         self.transformedY = tempY * (0.5 * frustumHeight / math.tan(0.5 * fov)) / abs(tempZ + 0.5 * frustumHeight / math.tan(0.5 * fov))
         

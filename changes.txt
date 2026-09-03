@@ -1,0 +1,8 @@
+## CHANGES SINCE THE LAST MAJOR PUSH:
+    -disabled the automatic window redraw feature in graphics.py, massively speeding up rendering
+    -re-vamping the window drawing process so that the window is redrawn with each command, making
+it way easier to create images
+    -added object deletion
+    -cleaned up code with more functions for user interface that are more dynamic/helpful
+    -fixed a bug where points too far behind the near plane would be divided by a negative value
+and would mirror themselves about the x and y axes as a result
